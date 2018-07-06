@@ -56,7 +56,7 @@ public class Main {
        // uncomment to use in website
         SparqlCli cli=new SparqlCli(args);
         kk.setQuery(cli.getQuery());
-        kk.conversion(cli.getType(),cli.getMeta());
+        kk.execQuery(kk.conversion(cli.getType(),cli.getMeta()));
 
         /* if you uncomment something and comment something you need to rebuild
         the artifacts to generate the new jar file
