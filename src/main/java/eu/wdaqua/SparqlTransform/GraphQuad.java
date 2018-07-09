@@ -1,3 +1,4 @@
+package eu.wdaqua.SparqlTransform;
 /**
  * Created by ami on 24/05/2018.
  */

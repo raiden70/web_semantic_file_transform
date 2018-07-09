@@ -1,3 +1,4 @@
+package eu.wdaqua.SparqlTransform;
 import org.apache.jena.riot.Lang;
 
 public class Main {
