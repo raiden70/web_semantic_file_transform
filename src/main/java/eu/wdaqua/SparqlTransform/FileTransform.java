@@ -1,3 +1,5 @@
+package eu.wdaqua.SparqlTransform;
+
 import org.apache.jena.graph.Node;
 import org.apache.jena.query.*;
 import org.apache.jena.riot.Lang;
