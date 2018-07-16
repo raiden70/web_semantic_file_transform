@@ -59,8 +59,18 @@ public class GraphQuad {
     {
         return "graph "+this.graph+" {"+this.subject+" "+this.predicate+" "+this.object+" .}";
     }
+    public String getQuadStringForFile()
+    {
+        return  this.subject+" "+this.predicate+" "+this.object+" "+this.graph +" .\n";
+    }
     public String getTripleString()
     {
         return " "+this.subject+" "+this.predicate+" "+this.object+" .";
     }
+
+    public String getTripleStringForFile()
+    {
+        return this.subject+" "+this.predicate+" "+this.object+" .\n";
+    }
+
 }

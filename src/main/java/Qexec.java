@@ -757,7 +757,9 @@ public class Qexec {
         } else if (type.equals("singleton")) {
             return singleton();
         } else if(type.equals("ndfluents")) {
-                String mmeta="select * where{"+meta+"}";
+            String mmeta="";
+            if(meta!="")
+                mmeta="select * where{"+meta+"}";
             return ndfluents(metaDataOfNdfluent(mmeta));
         } else if(type.equals("nary")){
             String s= getQuery().toString().replace("{","{"+meta);
