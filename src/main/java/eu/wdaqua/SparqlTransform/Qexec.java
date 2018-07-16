@@ -1,3 +1,4 @@
+package eu.wdaqua.SparqlTransform;
 import org.apache.jena.graph.Node;
 import org.apache.jena.query.*;
 import org.apache.jena.riot.Lang;
@@ -7,6 +8,7 @@ import org.apache.jena.sparql.syntax.ElementNamedGraph;
 import org.apache.jena.sparql.syntax.ElementPathBlock;
 import org.apache.jena.sparql.syntax.ElementVisitorBase;
 import org.apache.jena.sparql.syntax.ElementWalker;
+import org.apache.jena.system.JenaSystem;
 
 import java.util.*;
 import java.util.regex.Matcher;
