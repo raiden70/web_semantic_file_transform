@@ -1,0 +1,16 @@
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#born>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#statement>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Michel>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#wife>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#statement>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#born>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#US>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#statement>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Michel>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#wife>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#statement>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#US>.

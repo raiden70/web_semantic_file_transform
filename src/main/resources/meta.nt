@@ -1,0 +1,9 @@
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporalPartOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subPropertyOf> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf>.
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Temporal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context>.
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporalExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subPropertyOf> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent>.
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporalPart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subClassOf> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextPart>.
+
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePartOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subPropertyOf> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf>.
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Provenance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context>.
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenanceExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subPropertyOf> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent>.
+<http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subClassOf> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextPart>.

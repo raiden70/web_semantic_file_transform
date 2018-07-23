@@ -1,9 +1,6 @@
-Main.class
-GraphQuad.class
-Qexec.class
-GraphConstruct.class
-Qexec$1.class
-Qexec$3.class
-SparqlCli.class
-QueryGetter.class
-Qexec$2.class
+eu\wdaqua\SparqlTransform\FileIO.class
+eu\wdaqua\SparqlTransform\FileTransform.class
+eu\wdaqua\SparqlTransform\GraphConstruct.class
+eu\wdaqua\SparqlTransform\FileConvCLI.class
+eu\wdaqua\SparqlTransform\Main.class
+eu\wdaqua\SparqlTransform\GraphQuad.class

@@ -1,0 +1,2 @@
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#ps> <http://www.w3.org/1999/02/22-rdf-syntax-ns:statementPropertyOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#p>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#pv> <http://www.w3.org/1999/02/22-rdf-syntax-ns:valuePropertyOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#p>.

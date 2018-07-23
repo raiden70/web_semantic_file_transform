@@ -1,0 +1,6 @@
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#context> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#born> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> .

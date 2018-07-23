@@ -1,0 +1,2 @@
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#singletonPropertyOf>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#born>. 
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama> <http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#US>.

@@ -1,0 +1,26 @@
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenance> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePartOf>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePartOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenanceExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenanceExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#born> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> .
+
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#tiki>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenance> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@tiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePartOf>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@tiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePartOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@tiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenanceExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#tiki> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@tiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenanceExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#tiki> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@tiki> <http://www.w3.org/1999/02/22-rdf-syntax-ns#born> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@tiki> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#fox>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenance> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePartOf>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenancePartOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenanceExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#provenanceExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#fox> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@fox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#born> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@fox> .
+
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wiki>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporal> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@wiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporalPartOf>  <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@wiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporalPartOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@wiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporalExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#wiki> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@wiki> <http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#temporalExtent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#wiki> .
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#obama@wiki> <http://www.w3.org/1999/02/22-rdf-syntax-ns#born> <http://www.w3.org/1999/02/22-rdf-syntax-ns#USA@wiki> .

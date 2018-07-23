@@ -1,14 +1,12 @@
 package eu.wdaqua.SparqlTransform;
 
 import org.apache.jena.graph.Node;
-import org.apache.jena.query.*;
+import org.apache.jena.graph.Triple;
+import org.apache.jena.query.Dataset;
+import org.apache.jena.rdf.model.*;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.sparql.core.TriplePath;
-import org.apache.jena.sparql.syntax.ElementNamedGraph;
-import org.apache.jena.sparql.syntax.ElementPathBlock;
-import org.apache.jena.sparql.syntax.ElementVisitorBase;
-import org.apache.jena.sparql.syntax.ElementWalker;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -20,62 +18,33 @@ import java.util.regex.Pattern;
 public class FileTransform {
 
     private Dataset dataset;
-    private RDFDataMgr rdfDataMgr;
-    private Query query;
     private List<Node> l;
     private List<TriplePath> g;
+    private RDFDataMgr rdfDataMgr;
 
-    public void setDataSet(String dataSetPath, Lang l) {
+
+    public void setDataSet(String dataSetPath) {
         this.rdfDataMgr = new RDFDataMgr();// this will create an rdf data manager to read n-quad
-        this.dataset = rdfDataMgr.loadDataset(dataSetPath, l);
+        this.dataset = RDFDataMgr.loadDataset(dataSetPath);
+        //this.dataset.getDefaultModel().write(System.out);
+        //System.out.println(this.dataset.getDefaultModel().listObjects());
+        StmtIterator iter = this.dataset.getDefaultModel().listStatements();
+        while (iter.hasNext()) {
+            Statement r = iter.nextStatement();
+          //  System.out.println(r.getPredicate());
+        }
     }
 
-    public void printDataSet() {
-        this.rdfDataMgr.write(System.out, this.dataset, Lang.NQUADS);// this line will print the whole dataset with n-quads
+    public List<Statement> statementList() {
+    List<Statement> s=new ArrayList<>();
+    StmtIterator iter = this.dataset.getDefaultModel().listStatements();
+    while (iter.hasNext()) {
+        Statement r = iter.nextStatement();
+        s.add(r);
     }
+    return s;
+}
 
-    public Query getQuery() {
-        return query;
-    }
-
-    public void setQuery(String query) {
-        query ="select * where{"+query+"}";
-        this.query = QueryFactory.create(query);
-    }
-    public void setQuerySelect(String query) {
-        this.query = QueryFactory.create(query);
-    }
-
-
-    public List<String> getResultsVar() {
-        return this.query.getResultVars();
-    }
-
-    public List<Node> getGraphVar() {
-        l = new ArrayList<>();
-        ElementWalker.walk(this.query.getQueryPattern(),
-                new ElementVisitorBase() {
-                    public void visit(ElementNamedGraph el) {
-                        l.add(el.getGraphNameNode());
-                    }
-                });
-        return l;
-    }
-
-    public List<TriplePath> getQueryElements() {
-        g = new ArrayList<>();
-        ElementWalker.walk(this.query.getQueryPattern(),
-                new ElementVisitorBase() {
-                    public void visit(ElementPathBlock el) {
-                        Iterator<TriplePath> triples = el.patternElts();
-                        while (triples.hasNext()) {
-                            TriplePath p = triples.next();
-                            g.add(p);
-                        }
-                    }
-                });
-        return g;
-    }
     public String uriCorrection(String newQuery) {
         Pattern urlPattern = Pattern.compile(
                 "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)"
@@ -115,10 +84,10 @@ public class FileTransform {
         List<GraphQuad> graphQuads = new ArrayList<>();
         List<String> glue = new ArrayList<>();
 
-        for (int i = 0; i < getQueryElements().size(); i++) {
-            subjects.add(getQueryElements().get(i).getSubject().toString());
-            predicates.add(getQueryElements().get(i).getPredicate().toString());
-            objects.add(getQueryElements().get(i).getObject().toString());
+        for (int i = 0; i < statementList().size(); i++) {
+            subjects.add(statementList().get(i).getSubject().toString());
+            predicates.add(statementList().get(i).getPredicate().toString());
+            objects.add(statementList().get(i).getObject().toString());
         }
 
         for (int i = 0; i < predicates.size(); i++) {
@@ -174,21 +143,9 @@ public class FileTransform {
             glue2.add(remaining.get(i).getTripleStringForFile());
         }
         String listString2 = String.join("", glue2);
-        String selectQueryVars = String.join(" ?", getResultsVar());
-        selectQueryVars = "?" + selectQueryVars;
         String q=uriCorrection( listString + listString2 );
         System.out.println(q);
         return q;
-    }
-
-    public String namedGraph() {
-        if (this.query.toString().toLowerCase().contains("graph") || query.toString().toLowerCase().contains("from")) {
-            String selectQueryVars = String.join(" ?", getResultsVar());
-            selectQueryVars = "?" + selectQueryVars;
-            System.out.print("select " + selectQueryVars + " where " + this.query.getQueryPattern().toString() + "");
-            return "select " + selectQueryVars + " where " + this.query.getQueryPattern().toString() + "";
-        }
-        return "this is not a named graph";
     }
 
     public String singleton() {
@@ -200,10 +157,10 @@ public class FileTransform {
         List<String> npredicates = new ArrayList<>();
         List<String> nobjects = new ArrayList<>();
 
-        for (int i = 0; i < getQueryElements().size(); i++) {
-            subjects.add(getQueryElements().get(i).getSubject().toString());
-            predicates.add(getQueryElements().get(i).getPredicate().toString());
-            objects.add(getQueryElements().get(i).getObject().toString());
+        for (int i = 0; i < statementList().size(); i++) {
+            subjects.add(statementList().get(i).getSubject().toString());
+            predicates.add(statementList().get(i).getPredicate().toString());
+            objects.add(statementList().get(i).getObject().toString());
         }
         for (int i = 0; i < predicates.size(); i++) {
             if (predicates.get(i).equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#singletonPropertyOf")) {
@@ -226,9 +183,9 @@ public class FileTransform {
                     // predicates.set(i,npredicates.get(j));
                     qr = qr + npredicates.get(j) + " ";
                     qr = qr + nobjects.get(i);
+                    qr = qr + " "+ ngraphs.get(j) + " .\n";
                 }
             }
-            qr = qr + " "+ ngraphs.get(j) + " .\n";
         }
         for (int i = 0; i < nsubjects.size(); i++) {
             if (!ngraphs.contains(predicates.get(i))) {
@@ -239,8 +196,6 @@ public class FileTransform {
             }
         }
 
-        String selectQueryVars = String.join(" ?", getResultsVar());
-        selectQueryVars = "?" + selectQueryVars;
         String q=uriCorrection(qr);
         System.out.println(q);
         return q;
@@ -255,10 +210,10 @@ public class FileTransform {
         List<String> npredicates = new ArrayList<>();
         List<String> nobjects = new ArrayList<>();
 
-        for (int i = 0; i < getQueryElements().size(); i++) {
-            subjects.add(getQueryElements().get(i).getSubject().toString());
-            predicates.add(getQueryElements().get(i).getPredicate().toString());
-            objects.add(getQueryElements().get(i).getObject().toString());
+        for (int i = 0; i < statementList().size(); i++) {
+            subjects.add(statementList().get(i).getSubject().toString());
+            predicates.add(statementList().get(i).getPredicate().toString());
+            objects.add(statementList().get(i).getObject().toString());
         }
         for (int i=0;i<subjects.size();i++)
         {
@@ -278,12 +233,9 @@ public class FileTransform {
                 if(!ngraphs.contains(objects.get(i)))
                 {
                     ngraphs.add(objects.get(i));
-                    //nsubjects.add(objects.get(i));
-                    //npredicates.add("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
-                    //nobjects.add(map.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context"));
                 }
             }
-            // this par i get the graphs from the query
+            // this par i get the graphs from the dataset
         }
         for(int i = 0 ;i<subjects.size();i++)
         {
@@ -293,6 +245,9 @@ public class FileTransform {
                 npredicates.add(predicates.get(i));
                 nobjects.add(objects.get(i));
             }
+        }
+        for (int i = 0; i <nsubjects.size() ; i++) {
+         //   System.out.println(nsubjects.get(i));
         }
         for (int i = 0; i < nsubjects.size(); i++) {
             for (int j = 0; j <subjects.size() ; j++) {
@@ -367,20 +322,18 @@ public class FileTransform {
         for (int i = 0; i <lgrc.size() ; i++) {
             for (int j = 0; j <lgrc.get(i).getSubjects().size() ; j++) {
                 qr = qr + " " + lgrc.get(i).getSubjects().get(j) + " " + lgrc.get(i).getPredicates().get(j) + " " + lgrc.get(i).getObjects().get(j);
+                qr = qr+" "+lgrc.get(i).getGraph()+"#" +j+".\n";
+                qr=qr+lgrc.get(i).getGraph()+"#" +j+" "+map.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent")+ " " +lgrc.get(i).getGraph()+". \n";
             }
-            qr = qr+" "+lgrc.get(i).getGraph()+" .";
-
         }
-        // return the remaining part of the query
+        // return the remaining part of the dataset
         for(int i=0;i<nsubjects.size();i++)
         {
             if(!qr.contains(nsubjects.get(i) + " " + npredicates.get(i) + " " + nobjects.get(i)))
             {
-                qr = qr + " " + nsubjects.get(i) + " " + npredicates.get(i) + " " + nobjects.get(i) + ".";
+                qr = qr + " " + nsubjects.get(i) + " " + npredicates.get(i) + " " + nobjects.get(i) + ". \n";
             }
         }
-        String selectQueryVars = String.join(" ?", getResultsVar());
-        selectQueryVars = "?" + selectQueryVars;
         String q="";
         q = qr;
         q=uriCorrection(q);
@@ -388,33 +341,31 @@ public class FileTransform {
         return q;
     }
 
-    public Map<String,String> metaDataOfNdfluent(String meta)
-    {
+    public Map<String,String> metaDataOfNdfluent(String meta) {
+        List<Triple> t = new ArrayList<>();
+
         Map<String, String> map = new HashMap<>();
         if(!meta.equals("")) {
             List<String> subjects = new ArrayList<>();
             List<String> predicates = new ArrayList<>();
             List<String> objects = new ArrayList<>();
-            Query q = QueryFactory.create(meta);
-            g = new ArrayList<>();
-            ElementWalker.walk(q.getQueryPattern(),
-                    new ElementVisitorBase() {
-                        public void visit(ElementPathBlock el) {
-                            Iterator<TriplePath> triples = el.patternElts();
-                            while (triples.hasNext()) {
-                                TriplePath p = triples.next();
-                                g.add(p);
-                            }
-                        }
-                    });
-            for (int i = 0; i < g.size(); i++) {
-                subjects.add(g.get(i).getSubject().toString());
-                predicates.add(g.get(i).getPredicate().toString());
-                objects.add(g.get(i).getObject().toString());
+
+            Dataset q = RDFDataMgr.loadDataset(meta);
+            List<Statement> g=new ArrayList<>();
+            StmtIterator iter = q.getDefaultModel().listStatements();
+            while (iter.hasNext()) {
+                Statement r = iter.nextStatement();
+                g.add(r);
             }
-            for (int i = 0; i < subjects.size(); i++) {
-                map.put(objects.get(i), subjects.get(i));
-            }
+                for (int i = 0; i < g.size(); i++) {
+                    subjects.add(g.get(i).getSubject().toString());
+                    predicates.add(g.get(i).getPredicate().toString());
+                    objects.add(g.get(i).getObject().toString());
+                }
+
+                for (int i = 0; i < subjects.size(); i++) {
+                    map.put(objects.get(i), subjects.get(i));
+                }
 
         }else
         {
@@ -427,7 +378,325 @@ public class FileTransform {
         return map;
     }
 
-    public String nary() {
+    public List<Statement> metadata(String meta) {
+            Dataset q = RDFDataMgr.loadDataset(meta);
+            List<Statement> g=new ArrayList<>();
+            StmtIterator iter = q.getDefaultModel().listStatements();
+            while (iter.hasNext()) {
+                Statement r = iter.nextStatement();
+                g.add(r);
+            }
+            return g;
+    }
+
+    public String ndfluentsn(List<Statement> metast) {
+        List<String> subjects = new ArrayList<>();
+        List<String> predicates = new ArrayList<>();
+        List<String> objects = new ArrayList<>();
+
+        List<String> ngraphs = new ArrayList<>();
+        List<String> nsubjects = new ArrayList<>();
+        List<String> npredicates = new ArrayList<>();
+        List<String> nobjects = new ArrayList<>();
+
+        List<String> msubjects = new ArrayList<>();
+        List<String> mpredicates = new ArrayList<>();
+        List<String> mobjects = new ArrayList<>();
+
+        Map<String, List<String>> ms = new HashMap<>();
+        List<String> lc = new ArrayList<>();
+        List<String> le = new ArrayList<>();
+        List<String> lp = new ArrayList<>();
+
+        for (int i = 0; i < metast.size(); i++) {
+            msubjects.add(metast.get(i).getSubject().toString());
+            mpredicates.add(metast.get(i).getPredicate().toString());
+            mobjects.add(metast.get(i).getObject().toString());
+        }
+        for (int i = 0; i < msubjects.size(); i++) {
+            if (mobjects.get(i).equals("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context")) {
+                lc.add(msubjects.get(i));
+                ms.put("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context", lc);
+            }
+            if (mobjects.get(i).equals("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent")) {
+                le.add(msubjects.get(i));
+                ms.put("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent", le);
+            }
+            if (mobjects.get(i).equals("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf")) {
+                lp.add(msubjects.get(i));
+                ms.put("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf", lp);
+            }
+        }
+
+        for (int i = 0; i < statementList().size(); i++) {
+            subjects.add(statementList().get(i).getSubject().toString());
+            predicates.add(statementList().get(i).getPredicate().toString());
+            objects.add(statementList().get(i).getObject().toString());
+        }
+
+        for (int i = 0; i < subjects.size(); i++) {
+            if (predicates.get(i).equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#type") && (ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context").contains(objects.get(i)))) {
+                ngraphs.add(subjects.get(i));
+                nsubjects.add(subjects.get(i));
+                npredicates.add(predicates.get(i));
+                nobjects.add(objects.get(i));
+                subjects.remove(i);
+                predicates.remove(i);
+                objects.remove(i);
+            } else if (ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(i))) {
+                if (!ngraphs.contains(objects.get(i))) {
+                    ngraphs.add(objects.get(i));
+                }
+            }
+            // this par i get the graphs from the dataset
+        }
+        for (int i = 0; i < subjects.size(); i++) {
+            if (!ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(i)) && !ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(i))) {
+                nsubjects.add(subjects.get(i));
+                npredicates.add(predicates.get(i));
+                nobjects.add(objects.get(i));
+            }
+        }
+        // jusqu'a ici c'est ok
+        for (int i = 0; i < nsubjects.size(); i++) {
+            for (int j = 0; j < subjects.size(); j++) {
+                if (nsubjects.get(i).equals(subjects.get(j))) {
+                    if (nsubjects.get(i).equals(subjects.get(j)) && ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))) {
+                        nsubjects.set(i, objects.get(j));
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < nobjects.size(); i++) {
+            for (int j = 0; j < objects.size(); j++) {
+                if (nobjects.get(i).equals(subjects.get(j)) && ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))) {
+                    nobjects.set(i, objects.get(j));
+                }
+            }
+        }
+        String qr = "";
+        List<GraphConstruct> lgrc = new ArrayList<>();
+        for (int i = 0; i < ngraphs.size(); i++) {
+            GraphConstruct gc = new GraphConstruct();
+            gc.setGraph(ngraphs.get(i));
+            for (int j = 0; j < subjects.size(); j++) {
+                if (ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(j)) && objects.get(j).equals(ngraphs.get(i))) {
+                    gc.insertKeepC(subjects.get(j));
+
+                }
+            }
+
+            for (int j = 0; j <subjects.size() ; j++)
+            {
+                for (int k = 0; k < gc.getKeepC().size() ; k++) {
+                    if(subjects.get(j).equals(gc.getKeepC().get(k))&& ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))) {
+                        gc.insertKeepV(objects.get(j));
+                    }
+                }
+            }
+            for (int j = 0; j < subjects.size() ; j++) {
+                if(!ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(j)) && !ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))){
+                    for (int k = 0; k < gc.getKeepC().size(); k++) {
+                        if (objects.get(j).equals(gc.getKeepC().get(k)) && !gc.getKeepC().contains(subjects.get(j))) {
+                            gc.insertSubject(subjects.get(j));
+                            gc.insertPredicate(predicates.get(j));
+                            gc.insertObj(gc.getKeepV().get(k));
+                        } else if (subjects.get(j).equals(gc.getKeepC().get(k)) && !gc.getKeepC().contains(objects.get(j))) {
+                            gc.insertSubject(gc.getKeepV().get(k));
+                            gc.insertPredicate(predicates.get(j));
+                            gc.insertObj(objects.get(j));
+                        } else {
+                            if (subjects.get(j).equals(gc.getKeepC().get(k))) {
+                                gc.insertSubject(gc.getKeepV().get(k));
+                                gc.insertPredicate(predicates.get(j));
+                            } else if (objects.get(j).equals(gc.getKeepC().get(k))) {
+                                gc.insertObj(gc.getKeepV().get(k));
+                            }
+                        }
+                    }
+                }
+            }
+            lgrc.add(gc);
+        }
+        qr="";
+        for (int i = 0; i <lgrc.size() ; i++) {
+            for (int j = 0; j <lgrc.get(i).getSubjects().size() ; j++) {
+                qr = qr + " " + lgrc.get(i).getSubjects().get(j) + " " + lgrc.get(i).getPredicates().get(j) + " " + lgrc.get(i).getObjects().get(j);
+                qr = qr+" "+lgrc.get(i).getGraph()+".\n";
+            }
+        }
+        // return the remaining part of the dataset
+        for(int i=0;i<nsubjects.size();i++)
+        {
+            if(!qr.contains(nsubjects.get(i) + " " + npredicates.get(i) + " " + nobjects.get(i)))
+            {
+                qr = qr + " " + nsubjects.get(i) + " " + npredicates.get(i) + " " + nobjects.get(i) + ". \n";
+            }
+        }
+        String q="";
+        q = qr;
+        q=uriCorrection(q);
+        System.out.print(q);
+        return q;
+    }
+
+    public String ndfluentsm(List<Statement> metast) {
+        List<String> subjects = new ArrayList<>();
+        List<String> predicates = new ArrayList<>();
+        List<String> objects = new ArrayList<>();
+
+        List<String> ngraphs = new ArrayList<>();
+        List<String> nsubjects = new ArrayList<>();
+        List<String> npredicates = new ArrayList<>();
+        List<String> nobjects = new ArrayList<>();
+
+        List<String> msubjects = new ArrayList<>();
+        List<String> mpredicates = new ArrayList<>();
+        List<String> mobjects = new ArrayList<>();
+
+        Map<String, List<String>> ms = new HashMap<>();
+        List<String> lc = new ArrayList<>();
+        List<String> le = new ArrayList<>();
+        List<String> lp = new ArrayList<>();
+
+        for (int i = 0; i < metast.size(); i++) {
+            msubjects.add(metast.get(i).getSubject().toString());
+            mpredicates.add(metast.get(i).getPredicate().toString());
+            mobjects.add(metast.get(i).getObject().toString());
+        }
+        for (int i = 0; i < msubjects.size(); i++) {
+            if (mobjects.get(i).equals("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context")) {
+                lc.add(msubjects.get(i));
+                ms.put("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context", lc);
+            }
+            if (mobjects.get(i).equals("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent")) {
+                le.add(msubjects.get(i));
+                ms.put("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent", le);
+            }
+            if (mobjects.get(i).equals("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf")) {
+                lp.add(msubjects.get(i));
+                ms.put("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf", lp);
+            }
+        }
+
+        for (int i = 0; i < statementList().size(); i++) {
+            subjects.add(statementList().get(i).getSubject().toString());
+            predicates.add(statementList().get(i).getPredicate().toString());
+            objects.add(statementList().get(i).getObject().toString());
+        }
+
+        for (int i = 0; i < subjects.size(); i++) {
+            if (predicates.get(i).equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#type") && (ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#Context").contains(objects.get(i)))) {
+                ngraphs.add(subjects.get(i));
+                nsubjects.add(subjects.get(i));
+                npredicates.add(predicates.get(i));
+                nobjects.add(objects.get(i));
+                subjects.remove(i);
+                predicates.remove(i);
+                objects.remove(i);
+            } else if (ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(i))) {
+                if (!ngraphs.contains(objects.get(i))) {
+                    ngraphs.add(objects.get(i));
+                }
+            }
+            // this par i get the graphs from the dataset
+        }
+        for (int i = 0; i < subjects.size(); i++) {
+            if (!ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(i)) && !ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(i))) {
+                nsubjects.add(subjects.get(i));
+                npredicates.add(predicates.get(i));
+                nobjects.add(objects.get(i));
+            }
+        }
+        // jusqu'a ici c'est ok
+        for (int i = 0; i < nsubjects.size(); i++) {
+            for (int j = 0; j < subjects.size(); j++) {
+                if (nsubjects.get(i).equals(subjects.get(j))) {
+                    if (nsubjects.get(i).equals(subjects.get(j)) && ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))) {
+                        nsubjects.set(i, objects.get(j));
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < nobjects.size(); i++) {
+            for (int j = 0; j < objects.size(); j++) {
+                if (nobjects.get(i).equals(subjects.get(j)) && ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))) {
+                    nobjects.set(i, objects.get(j));
+                }
+            }
+        }
+        String qr = "";
+        List<GraphConstruct> lgrc = new ArrayList<>();
+        for (int i = 0; i < ngraphs.size(); i++) {
+            GraphConstruct gc = new GraphConstruct();
+            gc.setGraph(ngraphs.get(i));
+            for (int j = 0; j < subjects.size(); j++) {
+                if (ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(j)) && objects.get(j).equals(ngraphs.get(i))) {
+                    gc.insertKeepC(subjects.get(j));
+
+            }
+        }
+
+            for (int j = 0; j <subjects.size() ; j++)
+            {
+                for (int k = 0; k < gc.getKeepC().size() ; k++) {
+                    if(subjects.get(j).equals(gc.getKeepC().get(k))&& ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))) {
+                                gc.insertKeepV(objects.get(j));
+                    }
+                }
+            }
+            for (int j = 0; j < subjects.size() ; j++) {
+                if(!ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").contains(predicates.get(j)) && !ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualPartOf").contains(predicates.get(j))){
+                        for (int k = 0; k < gc.getKeepC().size(); k++) {
+                            if (objects.get(j).equals(gc.getKeepC().get(k)) && !gc.getKeepC().contains(subjects.get(j))) {
+                                gc.insertSubject(subjects.get(j));
+                                gc.insertPredicate(predicates.get(j));
+                                gc.insertObj(gc.getKeepV().get(k));
+                            } else if (subjects.get(j).equals(gc.getKeepC().get(k)) && !gc.getKeepC().contains(objects.get(j))) {
+                                gc.insertSubject(gc.getKeepV().get(k));
+                                gc.insertPredicate(predicates.get(j));
+                                gc.insertObj(objects.get(j));
+                            } else {
+                                if (subjects.get(j).equals(gc.getKeepC().get(k))) {
+                                    gc.insertSubject(gc.getKeepV().get(k));
+                                    gc.insertPredicate(predicates.get(j));
+                                } else if (objects.get(j).equals(gc.getKeepC().get(k))) {
+                                    gc.insertObj(gc.getKeepV().get(k));
+                                }
+                            }
+                        }
+                    }
+            }
+            lgrc.add(gc);
+        }
+        qr="";
+        for (int i = 0; i <lgrc.size() ; i++) {
+            for (int j = 0; j <lgrc.get(i).getSubjects().size() ; j++) {
+                qr = qr + " " + lgrc.get(i).getSubjects().get(j) + " " + lgrc.get(i).getPredicates().get(j) + " " + lgrc.get(i).getObjects().get(j);
+                qr = qr+" "+lgrc.get(i).getGraph()+"#" +j+".\n";
+
+               // System.out.println(ms.get("http://www.emse.fr/~zimmermann/Ontologies/ndfluents.ttl#contextualExtent").indexOf(lgrc.get(i).getGraph()));
+                //for(nobjects.get(i))
+                        qr = qr + lgrc.get(i).getGraph() + "#" + j + " " + predicates.get(objects.indexOf(lgrc.get(i).getGraph())) + " " + lgrc.get(j).getGraph() + ". \n";
+
+            }
+        }
+        // return the remaining part of the dataset
+        for(int i=0;i<nsubjects.size();i++)
+        {
+            if(!qr.contains(nsubjects.get(i) + " " + npredicates.get(i) + " " + nobjects.get(i)))
+            {
+                qr = qr + " " + nsubjects.get(i) + " " + npredicates.get(i) + " " + nobjects.get(i) + ". \n";
+            }
+        }
+        String q="";
+        q = qr;
+        q=uriCorrection(q);
+        System.out.print(q);
+        return q;
+    }
+
+    public String nary(List<Statement> meta) {
         List<String> subjects = new ArrayList<>();
         List<String> predicates = new ArrayList<>();
         List<String> objects = new ArrayList<>();
@@ -436,18 +705,23 @@ public class FileTransform {
         List<String> npredicates = new ArrayList<>();
         List<String> nobjects = new ArrayList<>();
 
-        for (int i = 0; i < getQueryElements().size(); i++) {
-            subjects.add(getQueryElements().get(i).getSubject().toString());
-            predicates.add(getQueryElements().get(i).getPredicate().toString());
-            objects.add(getQueryElements().get(i).getObject().toString());
-        }
 
+        for (int i = 0 ; i < meta.size() ; i++) {
+            subjects.add(meta.get(i).getSubject().toString());
+            predicates.add(meta.get(i).getPredicate().toString());
+            objects.add(meta.get(i).getObject().toString());
+        }
+        for (int i = 0; i < statementList().size(); i++) {
+            subjects.add(statementList().get(i).getSubject().toString());
+            predicates.add(statementList().get(i).getPredicate().toString());
+            objects.add(statementList().get(i).getObject().toString());
+        }
         for(int i = 0; i<subjects.size();i++)
         {
             for (int j = 0; j <subjects.size() ; j++) {
 
 
-                if(predicates.get(i).equals("nary:statementPropertyOf"))
+                if(predicates.get(i).equals("http://www.w3.org/1999/02/22-rdf-syntax-ns:statementPropertyOf"))
                 {
                     if(!npredicates.contains(objects.get(i)))
                         npredicates.add(objects.get(i));
@@ -457,7 +731,7 @@ public class FileTransform {
                     predicates.remove(i);
                     objects.remove(i);
                 }
-                if(predicates.get(i).equals("nary:valuePropertyOf"))
+                if(predicates.get(i).equals("http://www.w3.org/1999/02/22-rdf-syntax-ns:valuePropertyOf"))
                 {
                     if(!npredicates.contains(objects.get(i)))
                         npredicates.add(objects.get(i));
@@ -548,6 +822,7 @@ public class FileTransform {
                     predicates.remove(j);
                 }
             }}
+        // this is for the remaining triples
         for(int i=0;i<subjects.size();i++)
         {
             if(!qr.contains(subjects.get(i) + " " + predicates.get(i) + " " + objects.get(i)))
@@ -555,8 +830,6 @@ public class FileTransform {
                 qr = qr + " " + subjects.get(i) + " " + predicates.get(i) + " " + objects.get(i) + ".";
             }
         }
-        String selectQueryVars = String.join(" ?", getResultsVar());
-        selectQueryVars = "?" + selectQueryVars;
         String q="";
         q=qr;
         q=uriCorrection(q);
@@ -568,21 +841,29 @@ public class FileTransform {
     public String conversion(String type,String meta ) {
         if (type.equals("reification")) {
             return reification();
-        } else if (type.equals("ngraph")) {
-            return namedGraph();
         } else if (type.equals("singleton")) {
             return singleton();
-        } else if(type.equals("ndfluents")) {
-            String mmeta="";
-            if(meta!="")
-                mmeta="select * where{"+meta+"}";
-            return ndfluents(metaDataOfNdfluent(mmeta));
+        } else if(type.equals("ndfluentHDT")) {
+            if (meta != null) {
+                return ndfluentsm(metadata(meta));
+            }
+            else {
+                return ndfluentsm(metadata("classes\\contextMeta.nt"));
+            }
         } else if(type.equals("nary")){
-            String s= getQuery().toString().replace("{","{"+meta);
-            setQuerySelect(s);
-            return nary();
+
+            return nary(metadata(meta));
         }
-        return "default";
+        else if(type.equals("ndfluents")) {
+            if (meta != null) {
+                return ndfluentsn(metadata(meta));
+            }
+            else{
+                return ndfluentsn(metadata("classes\\contextMeta.nt"));
+            }
+        }
+            return "default";
     }
 
 }
+
