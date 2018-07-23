@@ -1,7 +1,7 @@
 # Web semantic dataset transformer:
 This code will transform any web semantic datasets with those extensions (.rdf, .nt, .ttl, .nq, .owl) that are based on different approaches like (RDF reification, N-ary relations, Singleton property, Ndfluents) to Named Graphs(.nq).
 #### Example:
-This statement "*Michel is the wife of Obama according to wikidata*" is written in RDF reification approache with ntriples(.nt):
+This statement "*Michel is the wife of Obama according to wikidata*" is written in RDF reification approach with ntriples(.nt):
 ```
 <http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#statement>.
 <http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Michel>.

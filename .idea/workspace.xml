@@ -4,7 +4,6 @@
     <list default="true" id="ededaebb-659a-4f91-86eb-39384f131e04" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/reificationset.nt" afterPath="$PROJECT_DIR$/src/main/resources/reificationset.nt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,9 +32,9 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SECOND">
-              <first_editor relative-caret-position="255">
-                <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="1" column="140" lean-forward="true" selection-start-line="1" selection-start-column="140" selection-end-line="1" selection-end-column="140" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -47,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/reificationset.nt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="3" column="158" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="158" />
+              <caret line="3" column="158" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="158" />
               <folding />
             </state>
           </provider>
@@ -57,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/rout.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <caret line="1" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -409,7 +408,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/apache-jena-3.7.0/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SparqlTransform - Copie" />
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -921,7 +920,7 @@
       <workItem from="1531899536725" duration="18343000" />
       <workItem from="1531985190262" duration="19618000" />
       <workItem from="1532073247160" duration="16063000" />
-      <workItem from="1532332153577" duration="5754000" />
+      <workItem from="1532332153577" duration="7003000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1530864939150</created>
@@ -951,11 +950,18 @@
       <option name="project" value="LOCAL" />
       <updated>1532336105162</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="editing README">
+      <created>1532338002426</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1532338002426</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137029000" />
+    <option name="totallyTimeSpent" value="138278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1067,7 +1073,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="Adding file Transformations" />
     <MESSAGE value="Fixed files problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed files problem" />
+    <MESSAGE value="editing README" />
+    <option name="LAST_COMMIT_MESSAGE" value="editing README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1381,7 +1388,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/rout.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="1" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1389,16 +1396,16 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/reificationset.nt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="158" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="158" />
+          <caret line="3" column="158" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="158" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="255">
-            <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="1" column="140" lean-forward="true" selection-start-line="1" selection-start-column="140" selection-end-line="1" selection-end-column="140" />
             <folding />
           </first_editor>
           <second_editor />
