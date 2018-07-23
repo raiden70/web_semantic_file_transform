@@ -1,19 +1,16 @@
-# SPARQL dataset transformer:
-This code will transform SPARQL queries from RDF reification, N-ary relations, Singleton property, Ndfluents to Named Graphs.
+# Web semantic dataset transformer:
+This code will transform any web semantic datasets with those extensions (.rdf, .nt, .ttl, .nq, .owl) that are based on different approaches like (RDF reification, N-ary relations, Singleton property, Ndfluents) to Named Graphs(.nq).
 #### Example:
-This dataset is in RDF reification:
+This statement "*Michel is the wife of Obama according to wikidata*" is written in RDF reification approache with ntriples(.nt):
 ```
-PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT * WHERE{
-    ?st rdf:type rdf:statement.
-    ?st rdf:subject ?s.
-    ?st rdf:predicate ?p.
-    ?st rdf:object ?o.
-}
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#statement>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Michel>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#wife>.
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama>.
 ```
-When converted into a named graph dataset the result will be :
+The result of the conversion will be in Named graph with N-quads(.nq) :
 ```
-SELECT * WHERE{GRAPH ?st {?s ?p ?o .}}
+<http://www.w3.org/1999/02/22-rdf-syntax-ns#Michel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#wife> <http://www.w3.org/1999/02/22-rdf-syntax-ns#obama> <http://www.w3.org/1999/02/22-rdf-syntax-ns#wikipedia> .
 ```
 
 
@@ -28,11 +25,9 @@ $ mvn clean package
 
 To execute the generated jar file:
 ```
-$ java -jar target\SparqlTransform-1.0-SNAPSHOT-jar-with-dependencies.jar -t "query_type" -d "dataset_path" -q "SPARQL_query" -m "query_mapping" 
+$ java -jar SparqlTransform-1.0-SNAPSHOT.jar -i "Dataset_Path" -o "Output_Path" -t "Approache_Type" -m "Meta_path"
 ```
-- **-q** : will take SPARQL dataset as an argument.
-- **-t** : will take the SPARQL dataset type(reification,singleton,ndfluents,nary).
-- **-d** : will take the path of the dataset that we want to dataset.
+- **-i** : will take your input dataset as an argument.
+- **-o** : will take the path of your new dataset.
+- **-t** : will contains one of those types(reification,singleton,ndfluents,nary,ndfluentHDT).
 - **-m** : will take the metadata of the dataset we use it in ndfluents and n-ary relations.
-
-You can check the web version [here](http://wdaqua-dataset-transformation.univ-st-etienne.fr/).

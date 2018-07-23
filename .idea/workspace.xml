@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ededaebb-659a-4f91-86eb-39384f131e04" name="Default" comment="Adding file Transformations">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/FileConvCLI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/FileIO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/contextMeta.nt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/meta.nt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/metan.nt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/nary.nt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ndfluset.nt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/ndflusetm.nt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/reificationset.nt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/singleton.nt" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/Qexec.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/QueryGetter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/SparqlCli.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/dataset.nq" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/sparql.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/SparqlTransform-1.0-SNAPSHOT-jar-with-dependencies.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/dataset.nq" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/SparqlTransform-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/SparqlTransform-1.0-SNAPSHOT.jar" />
+    <list default="true" id="ededaebb-659a-4f91-86eb-39384f131e04" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/FileTransform.java" afterPath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/FileTransform.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/Main.java" afterPath="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/reificationset.nt" afterPath="$PROJECT_DIR$/src/main/resources/reificationset.nt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -52,21 +30,35 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileTransform.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/FileTransform.java">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SECOND">
+              <first_editor relative-caret-position="255">
+                <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reificationset.nt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/reificationset.nt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="857" column="0" lean-forward="false" selection-start-line="857" selection-start-column="0" selection-end-line="857" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#statementList#0;class#FileTransform#0" expanded="false" />
-                <element signature="method#uriCorrection#0;class#FileTransform#0" expanded="false" />
-                <element signature="method#reification#0;class#FileTransform#0" expanded="false" />
-                <element signature="method#singleton#0;class#FileTransform#0" expanded="false" />
-                <element signature="method#ndfluents#0;class#FileTransform#0" expanded="false" />
-                <element signature="method#ndfluentsm#0;class#FileTransform#0" expanded="false" />
-                <element signature="method#nary#0;class#FileTransform#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" column="158" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="158" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rout.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/rout.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,6 +176,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/meta.nt" />
         <option value="$PROJECT_DIR$/src/main/resources/ndflusetm.nt" />
         <option value="$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/FileTransform.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/reificationset.nt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -927,7 +921,7 @@
       <workItem from="1531899536725" duration="18343000" />
       <workItem from="1531985190262" duration="19618000" />
       <workItem from="1532073247160" duration="16063000" />
-      <workItem from="1532332153577" duration="3811000" />
+      <workItem from="1532332153577" duration="5754000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1530864939150</created>
@@ -950,14 +944,22 @@
       <option name="project" value="LOCAL" />
       <updated>1531726650651</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed files problem">
+      <created>1532336105162</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1532336105162</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135086000" />
+    <option name="totallyTimeSpent" value="137029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -981,7 +983,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21866295" sideWeight="0.47943446" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33704737" sideWeight="0.47429305" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20886889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20886889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32729805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1064,7 +1066,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="Adding file Transformations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding file Transformations" />
+    <MESSAGE value="Fixed files problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed files problem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1086,7 +1089,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/GraphConstruct.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -1154,13 +1156,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="41">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/reificationset.nt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1294,14 +1289,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rout.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/contextMeta.nt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1376,8 +1363,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/wdaqua/SparqlTransform/FileTransform.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="857" column="0" lean-forward="false" selection-start-line="857" selection-start-column="0" selection-end-line="857" selection-end-column="0" />
+        <state relative-caret-position="262">
+          <caret line="537" column="0" lean-forward="false" selection-start-line="537" selection-start-column="0" selection-end-line="537" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#statementList#0;class#FileTransform#0" expanded="false" />
@@ -1388,6 +1375,33 @@
             <element signature="method#ndfluentsm#0;class#FileTransform#0" expanded="false" />
             <element signature="method#nary#0;class#FileTransform#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rout.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/reificationset.nt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="158" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="158" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SECOND">
+          <first_editor relative-caret-position="255">
+            <caret line="29" column="27" lean-forward="false" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
